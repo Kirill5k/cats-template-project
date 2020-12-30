@@ -1,15 +1,10 @@
 package io.github.kirill5k.couponsaggregator.common
 
-import cats.effect.{Blocker, ContextShift, IO}
+import cats.effect.{Blocker, IO}
+import io.github.kirill5k.couponsaggregator.CatsSpec
 import io.github.kirill5k.couponsaggregator.common.config.AppConfig
-import org.scalatest.matchers.must.Matchers
-import org.scalatest.wordspec.AsyncWordSpec
 
-import scala.concurrent.ExecutionContext
-
-class AppConfigSpec extends AsyncWordSpec with Matchers {
-
-  implicit val cs: ContextShift[IO] = IO.contextShift(ExecutionContext.global)
+class AppConfigSpec extends CatsSpec {
 
   "An AppConfig" should {
 
