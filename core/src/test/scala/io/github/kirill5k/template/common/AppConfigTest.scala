@@ -1,8 +1,8 @@
-package io.github.kirill5k.couponsaggregator.common
+package io.github.kirill5k.template.common
 
 import cats.effect.{Blocker, IO}
-import io.github.kirill5k.couponsaggregator.CatsSpec
-import io.github.kirill5k.couponsaggregator.common.config.AppConfig
+import io.github.kirill5k.template.CatsSpec
+import io.github.kirill5k.template.common.config.AppConfig
 
 class AppConfigSpec extends CatsSpec {
 

@@ -30,7 +30,7 @@ lazy val docker = Seq(
 lazy val root = (project in file("."))
   .settings(noPublish)
   .settings(
-    name := "coupons-aggregator",
+    name := "template-project",
   )
   .aggregate(core)
 
@@ -38,8 +38,8 @@ lazy val core = (project in file("core"))
   .enablePlugins(JavaAppPackaging, JavaAgent, DockerPlugin)
   .settings(docker)
   .settings(
-    name := "coupons-aggregator-core",
-    moduleName := "coupons-aggregator-core",
+    name := "template-project-core",
+    moduleName := "template-project-core",
     libraryDependencies ++= Dependencies.core ++ Dependencies.test
   )
 

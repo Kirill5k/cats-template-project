@@ -1,4 +1,4 @@
-package io.github.kirill5k.couponsaggregator
+package io.github.kirill5k.template
 
 import cats.effect.{ContextShift, IO, Timer}
 import io.chrisdavenport.log4cats.Logger

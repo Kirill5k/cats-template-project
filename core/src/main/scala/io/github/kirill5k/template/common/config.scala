@@ -1,4 +1,4 @@
-package io.github.kirill5k.couponsaggregator.common
+package io.github.kirill5k.template.common
 
 import cats.effect.{Blocker, ContextShift, Sync}
 import pureconfig.generic.auto._
