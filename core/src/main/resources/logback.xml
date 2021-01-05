@@ -1,9 +1,9 @@
 <configuration>
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%-30(%d{HH:mm:ss.SSS} [[%-20.20thread] %highlight(%-5level) %cyan(%logger{16}) - %msg%n</pattern>
-    </encoder>
+      <encoder>
+          <pattern>%date [%12.12thread] %highlight(%-5level) %cyan(%logger{16}) - %msg%n</pattern>
+      </encoder>
   </appender>
 
   <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
