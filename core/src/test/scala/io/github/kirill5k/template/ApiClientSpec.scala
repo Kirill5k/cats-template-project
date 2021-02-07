@@ -1,11 +1,9 @@
 package io.github.kirill5k.template
 
 import cats.effect.IO
-import cats.effect.testing.scalatest.AsyncIOSpec
-import io.chrisdavenport.log4cats.Logger
-import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
-import io.github.kirill5k.template.CatsSpec
 import sttp.client3
+import sttp.client3.asynchttpclient.cats.AsyncHttpClientCatsBackend
+import sttp.client3.testing.SttpBackendStub
 import sttp.model.{Header, Method}
 
 import scala.io.Source
