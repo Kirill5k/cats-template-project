@@ -12,6 +12,9 @@ import scala.io.Source
 
 trait ApiClientSpec extends CatsSpec {
 
+  def backendStub: SttpBackendStub[IO, Any] =
+    AsyncHttpClientCatsBackend.stub[IO]
+  
   def json(path: String): String = Source.fromResource(path).getLines().toList.mkString
 }
 
