@@ -2,12 +2,11 @@ import sbt._
 
 object Dependencies {
   object Versions {
-    lazy val fs2        = "2.5.0"
-    lazy val mongo4cats = "0.1.3"
+    lazy val mongo4cats = "0.1.4"
     lazy val pureConfig = "0.14.0"
     lazy val circe      = "0.13.0"
-    lazy val sttp       = "2.2.9"
-    lazy val http4s     = "0.21.17"
+    lazy val sttp       = "3.0.0"
+    lazy val http4s     = "0.21.18"
     lazy val logback    = "1.2.3"
     lazy val log4cats   = "1.1.1"
 
@@ -45,9 +44,9 @@ object Dependencies {
     }
 
     object sttp {
-      lazy val core        = "com.softwaremill.sttp.client" %% "core"                           % Versions.sttp
-      lazy val circe       = "com.softwaremill.sttp.client" %% "circe"                          % Versions.sttp
-      lazy val catsBackend = "com.softwaremill.sttp.client" %% "async-http-client-backend-cats" % Versions.sttp
+      lazy val core        = "com.softwaremill.sttp.client3" %% "core"                           % Versions.sttp
+      lazy val circe       = "com.softwaremill.sttp.client3" %% "circe"                          % Versions.sttp
+      lazy val catsBackend = "com.softwaremill.sttp.client3" %% "async-http-client-backend-cats" % Versions.sttp
 
       lazy val all = Seq(core, circe, catsBackend)
     }
@@ -69,7 +68,6 @@ object Dependencies {
   }
 
   lazy val core = Seq(
-    Libraries.fs2,
     Libraries.mongo4cats
   ) ++
     Libraries.circe.all ++
