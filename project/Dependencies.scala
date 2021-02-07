@@ -16,7 +16,6 @@ object Dependencies {
   }
 
   object Libraries {
-    lazy val fs2        = "co.fs2"             %% "fs2-core"        % Versions.fs2
     lazy val mongo4cats = "io.github.kirill5k" %% "mongo4cats-core" % Versions.mongo4cats
 
     object pureconfig {
