@@ -6,9 +6,9 @@ object Dependencies {
     lazy val pureConfig = "0.14.0"
     lazy val circe      = "0.13.0"
     lazy val sttp       = "3.0.0"
-    lazy val http4s     = "0.21.18"
+    lazy val http4s     = "0.21.19"
     lazy val logback    = "1.2.3"
-    lazy val log4cats   = "1.1.1"
+    lazy val log4cats   = "1.2.0"
 
     lazy val scalaTest     = "3.2.2"
     lazy val mockito       = "1.10.3"
@@ -26,8 +26,8 @@ object Dependencies {
     }
 
     object logging {
-      lazy val logback  = "ch.qos.logback"     % "logback-classic" % Versions.logback
-      lazy val log4cats = "io.chrisdavenport" %% "log4cats-slf4j"  % Versions.log4cats
+      lazy val logback  = "ch.qos.logback" % "logback-classic" % Versions.logback
+      lazy val log4cats = "org.typelevel" %% "log4cats-slf4j"  % Versions.log4cats
 
       lazy val all = Seq(log4cats, logback)
     }

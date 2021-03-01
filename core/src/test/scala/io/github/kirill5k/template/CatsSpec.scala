@@ -1,8 +1,8 @@
 package io.github.kirill5k.template
 
 import cats.effect.{ContextShift, IO, Timer}
-import io.chrisdavenport.log4cats.Logger
-import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
+import org.typelevel.log4cats.Logger
+import org.typelevel.log4cats.slf4j.Slf4jLogger
 import org.mockito.ArgumentMatchersSugar
 import org.mockito.scalatest.AsyncMockitoSugar
 import org.scalatest.matchers.must.Matchers

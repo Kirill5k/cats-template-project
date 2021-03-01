@@ -1,8 +1,8 @@
 package io.github.kirill5k.template
 
 import cats.effect.{ContextShift, IO}
-import io.chrisdavenport.log4cats.Logger
-import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
+import org.typelevel.log4cats.Logger
+import org.typelevel.log4cats.slf4j.Slf4jLogger
 import io.circe.parser._
 import org.http4s.{Response, Status}
 import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
