@@ -1,7 +1,7 @@
 import com.typesafe.sbt.packager.docker._
 
 ThisBuild / scalaVersion     := "2.13.5"
-ThisBuild / version          := "0.1.0"
+ThisBuild / version          := scala.sys.process.Process("git rev-parse HEAD").!!.trim.slice(0, 7)
 ThisBuild / organization     := "io.github.kirill5k"
 
 lazy val noPublish = Seq(
@@ -15,7 +15,7 @@ lazy val docker = Seq(
   packageName := moduleName.value,
   version := version.value,
   maintainer := "immotional@aol.com",
-  dockerBaseImage := "adoptopenjdk/openjdk15-openj9:alpine-jre",
+  dockerBaseImage := "adoptopenjdk/openjdk16-openj9:x86_64-alpine-jre-16_36_openj9-0.25.0",
   dockerUpdateLatest := true,
   makeBatScripts := List(),
   dockerCommands := {
