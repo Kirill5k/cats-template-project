@@ -1,8 +1,8 @@
 import com.typesafe.sbt.packager.docker._
 
-ThisBuild / scalaVersion     := "2.13.6"
-ThisBuild / version          := scala.sys.process.Process("git rev-parse HEAD").!!.trim.slice(0, 7)
-ThisBuild / organization     := "io.github.kirill5k"
+ThisBuild / scalaVersion := "2.13.6"
+ThisBuild / version := scala.sys.process.Process("git rev-parse HEAD").!!.trim.slice(0, 7)
+ThisBuild / organization := "io.github.kirill5k"
 
 lazy val noPublish = Seq(
   publish := {},
@@ -21,20 +21,22 @@ lazy val docker = Seq(
   dockerCommands := {
     val commands         = dockerCommands.value
     val (stage0, stage1) = commands.span(_ != DockerStageBreak)
-    val (before, after)      = stage1.splitAt(4)
-    val installBash = Cmd("RUN", "apk update && apk upgrade && apk add bash")
+    val (before, after)  = stage1.splitAt(4)
+    val installBash      = Cmd("RUN", "apk update && apk upgrade && apk add bash")
     stage0 ++ before ++ List(installBash) ++ after
   }
 )
 
-lazy val root = (project in file("."))
+lazy val root = project
+  .in(file("."))
   .settings(noPublish)
   .settings(
-    name := "template-project",
+    name := "template-project"
   )
   .aggregate(core)
 
-lazy val core = (project in file("core"))
+lazy val core = project
+  .in(file("core"))
   .enablePlugins(JavaAppPackaging, JavaAgent, DockerPlugin)
   .settings(docker)
   .settings(
@@ -42,4 +44,3 @@ lazy val core = (project in file("core"))
     moduleName := "template-project-core",
     libraryDependencies ++= Dependencies.core ++ Dependencies.test
   )
-
