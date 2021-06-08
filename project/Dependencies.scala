@@ -2,10 +2,10 @@ import sbt._
 
 object Dependencies {
   object Versions {
-    lazy val mongo4cats = "0.2.7"
+    lazy val mongo4cats = "0.2.8"
     lazy val pureConfig = "0.15.0"
-    lazy val circe      = "0.13.0"
-    lazy val sttp       = "3.3.4"
+    lazy val circe      = "0.14.1"
+    lazy val sttp       = "3.3.6"
     lazy val http4s     = "1.0.0-M23"
     lazy val logback    = "1.2.3"
     lazy val log4cats   = "2.1.1"
@@ -23,9 +23,6 @@ object Dependencies {
 
     object pureconfig {
       lazy val core       = "com.github.pureconfig" %% "pureconfig"             % Versions.pureConfig
-      lazy val catsEffect = "com.github.pureconfig" %% "pureconfig-cats-effect" % Versions.pureConfig
-
-      lazy val all = Seq(core, catsEffect)
     }
 
     object logging {
@@ -71,13 +68,13 @@ object Dependencies {
 
   lazy val core = Seq(
     Libraries.mongo4cats.core,
-    Libraries.mongo4cats.circe
+    Libraries.mongo4cats.circe,
+    Libraries.pureconfig.core
   ) ++
     Libraries.circe.all ++
     Libraries.http4s.all ++
     Libraries.logging.all ++
-    Libraries.sttp.all ++
-    Libraries.pureconfig.all
+    Libraries.sttp.all
 
   lazy val test = Seq(
     Libraries.scalaTest        % Test,
