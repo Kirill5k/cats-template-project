@@ -1,6 +1,7 @@
 package io.github.kirill5k.template
 
-import cats.effect.{ContextShift, IO}
+import cats.effect.{IO}
+import cats.effect.unsafe.implicits.global
 import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 import io.circe.parser._
@@ -11,12 +12,10 @@ import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import org.http4s.circe._
 
-import scala.concurrent.ExecutionContext
 import scala.io.Source
 
 trait ControllerSpec extends AnyWordSpec with MockitoSugar with ArgumentMatchersSugar with Matchers {
 
-  implicit val cs: ContextShift[IO] = IO.contextShift(ExecutionContext.global)
   implicit val logger: Logger[IO]   = Slf4jLogger.getLogger[IO]
 
   def verifyJsonResponse(
