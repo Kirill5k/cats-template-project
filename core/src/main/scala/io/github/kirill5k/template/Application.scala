@@ -8,8 +8,6 @@ import org.http4s.blaze.server.BlazeServerBuilder
 import org.http4s.implicits._
 import org.http4s.server.Router
 
-import scala.concurrent.ExecutionContext
-
 object Application extends IOApp.Simple {
 
   val config = AppConfig.load
@@ -18,7 +16,7 @@ object Application extends IOApp.Simple {
 
   override val run: IO[Unit] =
     for {
-      _ <- BlazeServerBuilder[IO](ExecutionContext.global)
+      _ <- BlazeServerBuilder[IO](runtime.compute)
         .bindHttp(config.server.port, config.server.host)
         .withHttpApp(Router[IO]().orNotFound)
         .serve
