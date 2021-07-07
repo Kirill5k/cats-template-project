@@ -5,31 +5,23 @@ import de.flapdoodle.embed.mongo.config.{MongodConfig, Net}
 import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.process.runtime.Network
 
-import java.io.File
-import java.nio.file.Files
-
 trait EmbeddedMongo {
 
-  private def clearResources(): Unit = {
-    val tempFile = System.getenv("temp") + File.separator + "extract-" + System.getenv("USERNAME") + "-extractmongod";
-    val extension = if (System.getenv("OS") != null && System.getenv("OS").contains("Windows")) ".exe" else ".sh"
-    Files.deleteIfExists(new File(s"$tempFile$extension").toPath)
-    Files.deleteIfExists(new File(tempFile + ".pid").toPath)
-    ()
-  }
-  
-  def withRunningEmbeddedMongo[A](host: String = "localhost", port: Int = 12345)(test: => A): A = {
-    clearResources()
-    val starter          = MongodStarter.getDefaultInstance
-    val mongodConfig     = MongodConfig.builder()
-      .version(Version.Main.PRODUCTION)
-      .net(new Net(host, port, Network.localhostIsIPv6))
-      .build
-    val mongodExecutable = starter.prepare(mongodConfig)
+  protected val mongoHost = "localhost"
+  protected val mongoPort = 12345
+
+  private val starter = MongodStarter.getDefaultInstance
+  private val mongodConfig = MongodConfig
+    .builder()
+    .version(Version.Main.PRODUCTION)
+    .net(new Net(mongoHost, mongoPort, Network.localhostIsIPv6))
+    .build
+
+  def withRunningEmbeddedMongo[A](test: => A): A = {
+    val mongoExecutable = starter.prepare(mongodConfig)
     try {
-      val _ = mongodExecutable.start
+      val _ = mongoExecutable.start
       test
-    } finally mongodExecutable.stop()
+    } finally mongoExecutable.stop()
   }
-}
 
