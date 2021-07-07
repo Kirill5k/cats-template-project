@@ -5,23 +5,25 @@ import de.flapdoodle.embed.mongo.config.{MongodConfig, Net}
 import de.flapdoodle.embed.mongo.distribution.Version
 import de.flapdoodle.embed.process.runtime.Network
 
+object EmbeddedMongo {
+  val starter = MongodStarter.getDefaultInstance
+}
+
 trait EmbeddedMongo {
 
   protected val mongoHost = "localhost"
-  protected val mongoPort = 12345
-
-  private val starter = MongodStarter.getDefaultInstance
-  private val mongodConfig = MongodConfig
-    .builder()
-    .version(Version.Main.PRODUCTION)
-    .net(new Net(mongoHost, mongoPort, Network.localhostIsIPv6))
-    .build
+  protected val mongoPort = 12343
 
   def withRunningEmbeddedMongo[A](test: => A): A = {
-    val mongoExecutable = starter.prepare(mongodConfig)
+    val mongodConfig = MongodConfig
+      .builder()
+      .version(Version.Main.PRODUCTION)
+      .net(new Net(mongoHost, mongoPort, Network.localhostIsIPv6))
+      .build
+    val mongodExecutable = EmbeddedMongo.starter.prepare(mongodConfig)
     try {
-      val _ = mongoExecutable.start
+      val _ = mongodExecutable.start
       test
-    } finally mongoExecutable.stop()
+    } finally mongodExecutable.stop()
   }
 
