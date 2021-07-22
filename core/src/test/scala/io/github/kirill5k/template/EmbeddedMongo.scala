@@ -23,7 +23,7 @@ object EmbeddedMongo {
 
   implicit final class MongodExecutableOps(private val ex: MongodExecutable) extends AnyVal {
     def startWithRetry[F[_]: Async](maxAttempts: Int = 5, attempt: Int = 0): F[MongodProcess] =
-      if (attempt < 0) Sync[F].raiseError(new RuntimeException("tried to prepare executable far too many times"))
+      if (attempt >= maxAttempts) Sync[F].raiseError(new RuntimeException("tried to prepare executable far too many times"))
       else
         Async[F].delay(ex.start()).handleErrorWith { _ =>
           Async[F].sleep(attempt.seconds) *> startWithRetry(maxAttempts, attempt + 1)
