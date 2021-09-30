@@ -36,12 +36,10 @@ object Dependencies {
 
     object circe {
       lazy val core          = "io.circe" %% "circe-core"           % Versions.circe
-      lazy val literal       = "io.circe" %% "circe-literal"        % Versions.circe
       lazy val generic       = "io.circe" %% "circe-generic"        % Versions.circe
-      lazy val genericExtras = "io.circe" %% "circe-generic-extras" % Versions.circe
       lazy val parser        = "io.circe" %% "circe-parser"         % Versions.circe
 
-      lazy val all = Seq(core, literal, generic, genericExtras, parser)
+      lazy val all = Seq(core, generic, parser)
     }
 
     object sttp {
