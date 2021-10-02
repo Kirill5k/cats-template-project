@@ -6,7 +6,6 @@ import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 import io.circe.parser._
 import org.http4s.{Response, Status}
-import org.mockito.{ArgumentMatchersSugar, MockitoSugar}
 import org.scalatest.Assertion
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -14,7 +13,7 @@ import org.http4s.circe._
 
 import scala.io.Source
 
-trait ControllerSpec extends AnyWordSpec with MockitoSugar with ArgumentMatchersSugar with Matchers {
+trait ControllerSpec extends AnyWordSpec with Matchers {
 
   implicit val logger: Logger[IO]   = Slf4jLogger.getLogger[IO]
 

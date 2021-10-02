@@ -12,7 +12,6 @@ object Dependencies {
     lazy val log4cats   = "2.1.1"
 
     lazy val scalaTest = "3.2.9"
-    lazy val mockito   = "1.16.42"
   }
 
   object Libraries {
@@ -24,7 +23,7 @@ object Dependencies {
     }
 
     object pureconfig {
-      lazy val core = "com.github.pureconfig" %% "pureconfig" % Versions.pureConfig
+      lazy val core = "com.github.pureconfig" %% "pureconfig-core" % Versions.pureConfig
     }
 
     object logging {
@@ -61,8 +60,6 @@ object Dependencies {
     }
 
     lazy val scalaTest        = "org.scalatest" %% "scalatest"               % Versions.scalaTest
-    lazy val mockitoCore      = "org.mockito"   %% "mockito-scala"           % Versions.mockito
-    lazy val mockitoScalatest = "org.mockito"   %% "mockito-scala-scalatest" % Versions.mockito
   }
 
   lazy val core =
@@ -78,8 +75,6 @@ object Dependencies {
 
   lazy val test = Seq(
     Libraries.scalaTest           % Test,
-    Libraries.mockitoCore         % Test,
-    Libraries.mockitoScalatest    % Test,
     Libraries.mongo4cats.embedded % Test
   )
 
