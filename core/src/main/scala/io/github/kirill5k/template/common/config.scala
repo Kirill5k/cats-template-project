@@ -1,7 +1,7 @@
 package io.github.kirill5k.template.common
 
-import pureconfig._
-import pureconfig.generic.derivation.default._
+import pureconfig.*
+import pureconfig.generic.derivation.default.*
 
 object config {
 
