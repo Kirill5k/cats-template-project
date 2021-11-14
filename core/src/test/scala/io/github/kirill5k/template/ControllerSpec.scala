@@ -15,7 +15,7 @@ import scala.io.Source
 
 trait ControllerSpec extends AnyWordSpec with Matchers {
 
-  implicit val logger: Logger[IO]   = Slf4jLogger.getLogger[IO]
+  given logger: Logger[IO]   = Slf4jLogger.getLogger[IO]
 
   def verifyJsonResponse(
       actual: IO[Response[IO]],

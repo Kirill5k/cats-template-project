@@ -4,10 +4,8 @@ import cats.effect.{IO}
 import cats.effect.unsafe.implicits.global
 import io.github.kirill5k.template.CatsSpec
 import io.github.kirill5k.template.common.config.AppConfig
-import org.scalatest.matchers.must.Matchers
-import org.scalatest.wordspec.AsyncWordSpec
 
-class AppConfigSpec extends AsyncWordSpec with Matchers {
+class AppConfigSpec extends CatsSpec {
 
   "An AppConfig" should {
 

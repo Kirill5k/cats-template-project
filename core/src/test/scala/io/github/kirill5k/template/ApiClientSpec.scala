@@ -18,7 +18,7 @@ trait ApiClientSpec extends CatsSpec {
 
 object RequestOps {
 
-  implicit final class RequestSyntax(private val req: client3.Request[_, _]) extends AnyVal {
+  extension (req: client3.Request[?, ?])
     def isPost: Boolean =
       req.method == Method.POST
 
@@ -50,5 +50,4 @@ object RequestOps {
     
     def hasParams(params: Map[String, String]): Boolean =
       req.uri.params.toMap.toSet[(String, String)].subsetOf(params.toSet)
-  }
 }
