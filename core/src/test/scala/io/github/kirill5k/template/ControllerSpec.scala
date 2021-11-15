@@ -4,12 +4,12 @@ import cats.effect.{IO}
 import cats.effect.unsafe.implicits.global
 import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger
-import io.circe.parser._
+import io.circe.*
+import io.circe.parser.*
 import org.http4s.{Response, Status}
 import org.scalatest.Assertion
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import org.http4s.circe._
 
 import scala.io.Source
 
@@ -27,8 +27,8 @@ trait ControllerSpec extends AnyWordSpec with Matchers {
     actualResp.status must be(expectedStatus)
     expectedBody match {
       case Some(expected) =>
-        val actual = actualResp.asJson.unsafeRunSync()
-        actual must be(parse(expected).getOrElse(throw new RuntimeException))
+        val actual = actualResp.as[String].unsafeRunSync()
+        parse(actual) mustBe parse(expected)
       case None =>
         actualResp.body.compile.toVector.unsafeRunSync() mustBe empty
     }
