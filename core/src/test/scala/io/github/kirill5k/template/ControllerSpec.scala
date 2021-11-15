@@ -33,7 +33,4 @@ trait ControllerSpec extends AnyWordSpec with Matchers {
         actualResp.body.compile.toVector.unsafeRunSync() mustBe empty
     }
   }
-
-  def readFileFromResources(path: String): String =
-    Source.fromResource(path).getLines().toList.mkString
 }
