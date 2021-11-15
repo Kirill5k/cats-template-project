@@ -10,6 +10,7 @@ object Dependencies {
     val http4s     = "1.0.0-M29"
     val logback    = "1.2.7"
     val log4cats   = "2.1.1"
+    val tapir      = "0.19.0-M16"
 
     val scalaTest = "3.2.10"
     val mockito   = "3.2.10.0"
@@ -50,14 +51,12 @@ object Dependencies {
       lazy val all = Seq(core, circe, catsBackend)
     }
 
-    object http4s {
-      lazy val core   = "org.http4s" %% "http4s-core"         % Versions.http4s
-      lazy val dsl    = "org.http4s" %% "http4s-dsl"          % Versions.http4s
-      lazy val server = "org.http4s" %% "http4s-server"       % Versions.http4s
-      lazy val blaze  = "org.http4s" %% "http4s-blaze-server" % Versions.http4s
-      lazy val circe  = "org.http4s" %% "http4s-circe"        % Versions.http4s
+    object tapir {
+      lazy val core   = "com.softwaremill.sttp.tapir" %% "tapir-core"          % Versions.tapir
+      lazy val circe  = "com.softwaremill.sttp.tapir" %% "tapir-json-circe"    % Versions.tapir
+      lazy val http4s = "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % Versions.tapir
 
-      lazy val all = Seq(core, dsl, server, blaze, circe)
+      lazy val all = Seq(core, circe, http4s)
     }
 
     lazy val scalaTest = "org.scalatest"     %% "scalatest"   % Versions.scalaTest
@@ -71,7 +70,7 @@ object Dependencies {
       Libraries.pureconfig.core
     ) ++
       Libraries.circe.all ++
-      Libraries.http4s.all ++
+      Libraries.tapir.all ++
       Libraries.logging.all ++
       Libraries.sttp.all
 
