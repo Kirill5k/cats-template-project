@@ -18,11 +18,12 @@ object Application extends IOApp.Simple:
     for
       config <- AppConfig.load[IO]
       health <- Health.make[IO]
+      http   <- Http.make(health)
       _ <-
         BlazeServerBuilder[IO]
           .withExecutionContext((runtime.compute))
           .bindHttp(config.server.port, config.server.host)
-          .withHttpApp(health.controller.routes.orNotFound)
+          .withHttpApp(http.app)
           .serve
           .compile
           .drain

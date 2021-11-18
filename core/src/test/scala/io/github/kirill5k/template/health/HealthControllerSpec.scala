@@ -2,8 +2,8 @@ package io.github.kirill5k.template.health
 
 import cats.effect.IO
 import io.github.kirill5k.template.ControllerSpec
-import org.http4s.implicits._
-import org.http4s._
+import org.http4s.implicits.*
+import org.http4s.*
 
 class HealthControllerSpec extends ControllerSpec {
 
