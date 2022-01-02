@@ -1,7 +1,6 @@
 package io.github.kirill5k.template
 
-import cats.effect.IO
-import cats.effect.IOApp
+import cats.effect.{IO, IOApp}
 import io.github.kirill5k.template.common.config.AppConfig
 import io.github.kirill5k.template.health.Health
 import org.typelevel.log4cats.Logger
@@ -13,6 +12,6 @@ object Application extends IOApp.Simple:
     for
       config <- AppConfig.load[IO]
       health <- Health.make[IO]
-      http   <- Http.make(health)
-      _      <- Server.serve(config.server, http.app, runtime.compute).compile.drain
+      http   <- Http.make[IO](health)
+      _      <- Server.serve[IO](config.server, http.app, runtime.compute).compile.drain
     yield ()
