@@ -6,14 +6,14 @@ ThisBuild / organization                        := "io.github.kirill5k"
 ThisBuild / githubWorkflowPublishTargetBranches := Nil
 ThisBuild / githubWorkflowJavaVersions          := Seq("amazon-corretto@1.17")
 
-lazy val noPublish = Seq(
+val noPublish = Seq(
   publish         := {},
   publishLocal    := {},
   publishArtifact := false,
   publish / skip  := true
 )
 
-lazy val docker = Seq(
+val docker = Seq(
   packageName        := moduleName.value,
   version            := version.value,
   maintainer         := "immotional@aol.com",
@@ -29,15 +29,7 @@ lazy val docker = Seq(
   }
 )
 
-lazy val root = project
-  .in(file("."))
-  .settings(noPublish)
-  .settings(
-    name := "template-project"
-  )
-  .aggregate(core)
-
-lazy val core = project
+val core = project
   .in(file("core"))
   .enablePlugins(JavaAppPackaging, JavaAgent, DockerPlugin)
   .settings(docker)
@@ -46,3 +38,11 @@ lazy val core = project
     moduleName := "template-project-core",
     libraryDependencies ++= Dependencies.core ++ Dependencies.test
   )
+
+val root = project
+  .in(file("."))
+  .settings(noPublish)
+  .settings(
+    name := "template-project"
+  )
+  .aggregate(core)
