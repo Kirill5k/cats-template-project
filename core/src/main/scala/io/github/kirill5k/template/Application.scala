@@ -19,12 +19,5 @@ object Application extends IOApp.Simple:
       config <- AppConfig.load[IO]
       health <- Health.make[IO]
       http   <- Http.make(health)
-      _ <-
-        BlazeServerBuilder[IO]
-          .withExecutionContext((runtime.compute))
-          .bindHttp(config.server.port, config.server.host)
-          .withHttpApp(http.app)
-          .serve
-          .compile
-          .drain
+      _      <- Server.serve(config.server, http.app, runtime.compute).compile.drain
     yield ()
