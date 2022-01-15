@@ -1,6 +1,5 @@
 package io.github.kirill5k.template.health
 
-import cats.Monad
 import cats.effect.Async
 import cats.effect.Ref
 import cats.effect.Temporal
@@ -37,4 +36,5 @@ object HealthController:
   def make[F[_]: Async]: F[Controller[F]] =
     Temporal[F]
       .realTimeInstant
-      .flatMap(ts => Ref.of(ts).map(ref => new HealthController[F](ref)))
+      .flatMap(ts => Ref.of(ts))
+      .map(ref => HealthController[F](ref))
