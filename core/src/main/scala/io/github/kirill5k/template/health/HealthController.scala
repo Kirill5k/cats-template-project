@@ -11,8 +11,6 @@ import io.circe.Codec
 import io.github.kirill5k.template.common.http.Controller
 import java.time.Instant
 import org.http4s.HttpRoutes
-import sttp.capabilities.WebSockets
-import sttp.capabilities.fs2.Fs2Streams
 import sttp.tapir.*
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.server.http4s.Http4sServerInterpreter
