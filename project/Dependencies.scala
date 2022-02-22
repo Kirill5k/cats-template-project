@@ -3,14 +3,14 @@ import sbt._
 object Dependencies {
 
   object Versions {
-    val mongo4cats = "0.4.3"
+    val mongo4cats = "0.4.5"
     val pureConfig = "0.17.1"
     val circe      = "0.14.1"
-    val sttp       = "3.3.18"
-    val http4s     = "0.23.7"
+    val sttp       = "3.4.1"
+    val http4s     = "0.23.10"
     val logback    = "1.2.10"
     val log4cats   = "2.1.1"
-    val tapir      = "0.20.0-M3"
+    val tapir      = "0.20.0-M10"
 
     val scalaTest = "3.2.10"
     val mockito   = "3.2.10.0"
@@ -59,6 +59,10 @@ object Dependencies {
       val all = Seq(core, circe, http4s)
     }
 
+    object http4s {
+      val blazeServer = "org.http4s" %% "http4s-blaze-server" % Versions.http4s
+    }
+
     val scalaTest = "org.scalatest"     %% "scalatest"   % Versions.scalaTest
     val mockito   = "org.scalatestplus" %% "mockito-3-4" % Versions.mockito
   }
@@ -67,7 +71,8 @@ object Dependencies {
     Seq(
       Libraries.mongo4cats.core,
       Libraries.mongo4cats.circe,
-      Libraries.pureconfig.core
+      Libraries.pureconfig.core,
+      Libraries.http4s.blazeServer
     ) ++
       Libraries.circe.all ++
       Libraries.tapir.all ++

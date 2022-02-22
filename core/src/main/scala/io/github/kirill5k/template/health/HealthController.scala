@@ -20,8 +20,7 @@ final class HealthController[F[_]: Async](
 
   implicit val statusSchema: Schema[HealthController.AppStatus] = Schema.string
 
-  private val statusEndpoint: ServerEndpoint[Any, F] = infallibleEndpoint
-    .get
+  private val statusEndpoint: ServerEndpoint[Any, F] = infallibleEndpoint.get
     .in("health" / "status")
     .out(jsonBody[HealthController.AppStatus])
     .serverLogicSuccess(req => startupTime.get.map(t => HealthController.AppStatus(t)))
@@ -34,7 +33,6 @@ object HealthController:
   final case class AppStatus(startupTime: Instant) derives Codec.AsObject
 
   def make[F[_]: Async]: F[Controller[F]] =
-    Temporal[F]
-      .realTimeInstant
+    Temporal[F].realTimeInstant
       .flatMap(ts => Ref.of(ts))
       .map(ref => HealthController[F](ref))

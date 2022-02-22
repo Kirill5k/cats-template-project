@@ -12,7 +12,7 @@ trait ApiClientSpec extends CatsSpec {
 
   def backendStub: SttpBackendStub[IO, Any] =
     AsyncHttpClientCatsBackend.stub[IO]
-  
+
   def json(path: String): String = Source.fromResource(path).getLines().toList.mkString
 }
 
@@ -47,7 +47,7 @@ object RequestOps {
 
     def bodyContains(body: String): Boolean =
       req.body.toString.contains(body)
-    
+
     def hasParams(params: Map[String, String]): Boolean =
       req.uri.params.toMap.toSet[(String, String)].subsetOf(params.toSet)
 }

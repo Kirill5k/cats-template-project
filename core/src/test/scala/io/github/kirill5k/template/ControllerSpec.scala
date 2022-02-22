@@ -1,6 +1,6 @@
 package io.github.kirill5k.template
 
-import cats.effect.{IO}
+import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 import org.typelevel.log4cats.Logger
 import org.typelevel.log4cats.slf4j.Slf4jLogger
@@ -15,7 +15,7 @@ import scala.io.Source
 
 trait ControllerSpec extends AnyWordSpec with Matchers {
 
-  given logger: Logger[IO]   = Slf4jLogger.getLogger[IO]
+  given logger: Logger[IO] = Slf4jLogger.getLogger[IO]
 
   def verifyJsonResponse(
       actual: IO[Response[IO]],
