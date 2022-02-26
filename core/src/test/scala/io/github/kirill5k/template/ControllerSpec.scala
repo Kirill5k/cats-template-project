@@ -18,19 +18,22 @@ trait ControllerSpec extends AnyWordSpec with Matchers {
   given logger: Logger[IO] = Slf4jLogger.getLogger[IO]
 
   def verifyJsonResponse(
-      actual: IO[Response[IO]],
+      response: IO[Response[IO]],
       expectedStatus: Status,
       expectedBody: Option[String] = None
-  ): Assertion = {
-    val actualResp = actual.unsafeRunSync()
-
-    actualResp.status must be(expectedStatus)
-    expectedBody match {
-      case Some(expected) =>
-        val actual = actualResp.as[String].unsafeRunSync()
-        parse(actual) mustBe parse(expected)
-      case None =>
-        actualResp.body.compile.toVector.unsafeRunSync() mustBe empty
-    }
-  }
+  ): Assertion =
+    response.flatMap { res =>
+      expectedBody match {
+        case Some(expectedJson) =>
+          res.as[String].map { receivedJson =>
+            res.status mustBe expectedStatus
+            parse(receivedJson) mustBe parse(expectedJson)
+          }
+        case None =>
+          res.body.compile.toVector.map { receivedJson =>
+            res.status mustBe expectedStatus
+            receivedJson mustBe empty
+          }
+      }
+    }.unsafeRunSync()
 }
