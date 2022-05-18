@@ -23,7 +23,7 @@ final class HealthController[F[_]: Async](
   private val statusEndpoint: ServerEndpoint[Any, F] = infallibleEndpoint.get
     .in("health" / "status")
     .out(jsonBody[HealthController.AppStatus])
-    .serverLogicSuccess(req => startupTime.get.map(t => HealthController.AppStatus(t)))
+    .serverLogicSuccess(_ => startupTime.get.map(t => HealthController.AppStatus(t)))
 
   def routes: HttpRoutes[F] = Http4sServerInterpreter[F]().toRoutes(statusEndpoint)
 }

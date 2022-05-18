@@ -26,4 +26,4 @@ final class Http[F[_]: Async] private (
 }
 
 object Http:
-  def make[F[_]: Async](health: Health[F]): F[Http[F]] = Monad[F].pure(new Http[F](health))
+  def make[F[_]: Async](health: Health[F]): F[Http[F]] = Monad[F].pure(Http[F](health))
