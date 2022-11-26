@@ -16,7 +16,7 @@ object config {
   ) derives ConfigReader
 
   object AppConfig {
-    def load[F[_]](implicit F: Sync[F]): F[AppConfig] =
+    def load[F[_]](using F: Sync[F]): F[AppConfig] =
       F.blocking(ConfigSource.default.loadOrThrow[AppConfig])
   }
 }

@@ -13,5 +13,5 @@ object Application extends IOApp.Simple:
       config <- AppConfig.load[IO]
       health <- Health.make[IO]
       http   <- Http.make[IO](health)
-      _      <- Server.serve[IO](config.server, http.app, runtime.compute).compile.drain
+      _      <- Server.serve[IO](config.server, http.app).compile.drain
     yield ()

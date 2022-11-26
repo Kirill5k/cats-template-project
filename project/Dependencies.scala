@@ -3,17 +3,17 @@ import sbt._
 object Dependencies {
 
   object Versions {
-    val mongo4cats = "0.4.8"
-    val pureConfig = "0.17.1"
-    val circe      = "0.14.1"
-    val sttp       = "3.6.1"
-    val http4s     = "0.23.11"
-    val logback    = "1.2.11"
-    val log4cats   = "2.3.1"
-    val tapir      = "1.0.0-RC1"
+    val mongo4cats = "0.6.5"
+    val pureConfig = "0.17.2"
+    val circe      = "0.14.3"
+    val sttp       = "3.8.3"
+    val http4s     = "0.23.16"
+    val logback    = "1.4.5"
+    val log4cats   = "2.5.0"
+    val tapir      = "1.2.2"
 
-    val scalaTest = "3.2.11"
-    val mockito   = "3.2.10.0"
+    val scalaTest = "3.2.14"
+    val mockito   = "3.2.14.0"
   }
 
   object Libraries {
@@ -44,11 +44,11 @@ object Dependencies {
     }
 
     object sttp {
-      val core        = "com.softwaremill.sttp.client3" %% "core"                           % Versions.sttp
-      val circe       = "com.softwaremill.sttp.client3" %% "circe"                          % Versions.sttp
-      val catsBackend = "com.softwaremill.sttp.client3" %% "async-http-client-backend-cats" % Versions.sttp
+      val core       = "com.softwaremill.sttp.client3" %% "core"  % Versions.sttp
+      val circe      = "com.softwaremill.sttp.client3" %% "circe" % Versions.sttp
+      val fs2Backend = "com.softwaremill.sttp.client3" %% "fs2"   % Versions.sttp
 
-      val all = Seq(core, circe, catsBackend)
+      val all = Seq(core, circe, fs2Backend)
     }
 
     object tapir {
@@ -60,24 +60,23 @@ object Dependencies {
     }
 
     object http4s {
-      val blazeServer = "org.http4s" %% "http4s-blaze-server" % Versions.http4s
+      val emberServer = "org.http4s" %% "http4s-ember-server" % Versions.http4s
     }
 
     val scalaTest = "org.scalatest"     %% "scalatest"   % Versions.scalaTest
-    val mockito   = "org.scalatestplus" %% "mockito-3-4" % Versions.mockito
+    val mockito   = "org.scalatestplus" %% "mockito-4-6" % Versions.mockito
   }
 
-  val core =
-    Seq(
-      Libraries.mongo4cats.core,
-      Libraries.mongo4cats.circe,
-      Libraries.pureconfig.core,
-      Libraries.http4s.blazeServer
-    ) ++
-      Libraries.circe.all ++
-      Libraries.tapir.all ++
-      Libraries.logging.all ++
-      Libraries.sttp.all
+  val core = Seq(
+    Libraries.mongo4cats.core,
+    Libraries.mongo4cats.circe,
+    Libraries.pureconfig.core,
+    Libraries.http4s.emberServer
+  ) ++
+    Libraries.circe.all ++
+    Libraries.tapir.all ++
+    Libraries.logging.all ++
+    Libraries.sttp.all
 
   val test = Seq(
     Libraries.scalaTest           % Test,
