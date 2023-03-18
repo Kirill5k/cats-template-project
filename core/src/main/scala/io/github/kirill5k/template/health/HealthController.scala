@@ -1,7 +1,6 @@
 package io.github.kirill5k.template.health
 
 import cats.effect.Async
-import cats.effect.Ref
 import cats.effect.Temporal
 import cats.syntax.flatMap.*
 import cats.syntax.functor.*
@@ -17,11 +16,11 @@ import sttp.tapir.server.http4s.Http4sServerInterpreter
 import java.time.Instant
 
 final class HealthController[F[_]: Async](
-    private val startupTime: Ref[F, Instant]
+    private val startupTime: Instant
 ) extends Controller[F] {
 
   private val statusEndpoint: ServerEndpoint[Any, F] = HealthController.statusEndpoint
-    .serverLogicSuccess(_ => startupTime.get.map(t => HealthController.AppStatus(t)))
+    .serverLogicPure(_ => Right(HealthController.AppStatus(startupTime)))
 
   def routes: HttpRoutes[F] = Http4sServerInterpreter[F]().toRoutes(List(statusEndpoint))
 }
@@ -38,6 +37,5 @@ object HealthController extends TapirJsonCirce with SchemaDerivation {
 
   def make[F[_]: Async]: F[Controller[F]] =
     Temporal[F].realTimeInstant
-      .flatMap(Ref.of)
       .map(HealthController[F](_))
 }
