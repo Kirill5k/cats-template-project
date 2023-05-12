@@ -13,7 +13,10 @@ object syntax {
         case _  => dateString
       Try(Instant.parse(localDate)).toEither
 
-  extension (ld: LocalDate) def toInstantAtStartOfDay: Instant = ld.atStartOfDay().toInstant(ZoneOffset.UTC)
+  extension (ld: LocalDate)
+    def toInstantAtStartOfDay: Instant =
+      ld.atStartOfDay().toInstant(ZoneOffset.UTC)
+
   extension (ts: Instant)
     def minus(duration: FiniteDuration): Instant          = ts.minusNanos(duration.toNanos)
     def plus(duration: FiniteDuration): Instant           = ts.plusNanos(duration.toNanos)
