@@ -5,9 +5,20 @@ import io.github.kirill5k.template.common.time.syntax.*
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
+import java.time.format.DateTimeParseException
+import java.time.Instant
 import scala.concurrent.duration.*
 
 class TimeSyntaxSpec extends AnyWordSpec with Matchers {
+
+  "A String extension" should {
+    "convert str to instant" in {
+      "2020-01-01".toInstant mustBe Right(Instant.parse("2020-01-01T00:00:00Z"))
+      "2020-01-01T01:30:00".toInstant mustBe Right(Instant.parse("2020-01-01T01:30:00Z"))
+      "2020-01-01T02:30:00Z".toInstant mustBe Right(Instant.parse("2020-01-01T02:30:00Z"))
+      "foo".toInstant.left.map(_.getMessage) mustBe Left("Text 'foo' could not be parsed at index 0")
+    }
+  }
 
   "A FiniteDuration extension" should {
 
