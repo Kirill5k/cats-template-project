@@ -10,7 +10,7 @@ object Dependencies {
     val http4s     = "0.23.18"
     val logback    = "1.4.6"
     val log4cats   = "2.5.0"
-    val tapir      = "1.2.10"
+    val tapir      = "1.3.0"
 
     val scalaTest = "3.2.15"
     val mockito   = "3.2.15.0"
