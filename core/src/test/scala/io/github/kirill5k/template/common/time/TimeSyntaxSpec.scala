@@ -4,7 +4,6 @@ import io.github.kirill5k.template.common.time.syntax.*
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-import java.time.format.DateTimeParseException
 import java.time.temporal.ChronoUnit
 import java.time.{DayOfWeek, Instant, LocalDate}
 import scala.concurrent.duration.*

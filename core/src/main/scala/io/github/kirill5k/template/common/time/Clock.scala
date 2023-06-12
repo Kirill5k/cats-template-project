@@ -1,6 +1,6 @@
 package io.github.kirill5k.template.common.time
 
-import cats.effect.{Async, Temporal}
+import cats.effect.Temporal
 import cats.syntax.functor.*
 import io.github.kirill5k.template.common.time.syntax.*
 

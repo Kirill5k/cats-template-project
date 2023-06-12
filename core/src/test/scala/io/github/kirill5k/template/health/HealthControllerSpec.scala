@@ -1,6 +1,6 @@
 package io.github.kirill5k.template.health
 
-import cats.effect.{IO, Ref}
+import cats.effect.IO
 import io.github.kirill5k.template.common.time.Clock
 import io.github.kirill5k.template.{ControllerSpec, MockClock}
 import org.http4s.implicits.*

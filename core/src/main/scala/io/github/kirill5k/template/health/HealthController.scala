@@ -1,7 +1,6 @@
 package io.github.kirill5k.template.health
 
 import cats.effect.Async
-import cats.effect.Temporal
 import cats.syntax.flatMap.*
 import cats.syntax.functor.*
 import io.circe.Codec

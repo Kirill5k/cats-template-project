@@ -1,7 +1,6 @@
 package io.github.kirill5k.template
 
 import cats.Monad
-import cats.effect.IO
 import io.github.kirill5k.template.common.time.Clock
 import io.github.kirill5k.template.common.time.syntax.*
 

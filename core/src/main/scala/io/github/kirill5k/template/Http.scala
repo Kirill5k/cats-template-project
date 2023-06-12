@@ -2,7 +2,6 @@ package io.github.kirill5k.template
 
 import cats.Monad
 import cats.effect.Async
-import cats.implicits.*
 import io.github.kirill5k.template.health.Health
 import org.http4s.*
 import org.http4s.implicits.*
