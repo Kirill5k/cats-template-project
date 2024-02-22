@@ -3,17 +3,17 @@ import sbt._
 object Dependencies {
 
   object Versions {
-    val mongo4cats = "0.6.15"
-    val pureConfig = "0.17.4"
-    val circe      = "0.14.5"
-    val sttp       = "3.8.16"
-    val http4s     = "0.23.23"
-    val logback    = "1.4.8"
+    val mongo4cats = "0.7.2"
+    val pureConfig = "0.17.6"
+    val circe      = "0.14.6"
+    val sttp       = "3.9.3"
+    val http4s     = "0.23.25"
+    val logback    = "1.5.0"
     val log4cats   = "2.6.0"
-    val tapir      = "1.6.4"
+    val tapir      = "1.9.10"
 
-    val scalaTest = "3.2.16"
-    val mockito   = "3.2.15.0"
+    val scalaTest = "3.2.18"
+    val mockito   = "3.2.17.0"
   }
 
   object Libraries {
@@ -64,7 +64,7 @@ object Dependencies {
     }
 
     val scalaTest = "org.scalatest"     %% "scalatest"   % Versions.scalaTest
-    val mockito   = "org.scalatestplus" %% "mockito-4-6" % Versions.mockito
+    val mockito   = "org.scalatestplus" %% "mockito-4-11" % Versions.mockito
   }
 
   val core = Seq(

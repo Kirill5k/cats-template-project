@@ -32,7 +32,7 @@ val docker = Seq(
 )
 
 val core = project
-  .in(file("core"))
+  .in(file("modules/core"))
   .enablePlugins(JavaAppPackaging, JavaAgent, DockerPlugin)
   .settings(docker)
   .settings(
